@@ -4,17 +4,17 @@
 {% block content %}
   <h2>
     {% if create %}
-      Add new Post
+      Добавить статью
     {% else %}
-      Edit Post
+      Редактировать статью
     {% endif %}
   </h2>
 
   <form action="?{{ request.query_string }}" method="post">
     {{ forms.render(form) }}
     <div class="actions">
-      <input type="submit" class="btn btn-primary" value="save">
-      <a href="{{ url_for("admin.index") }}" class="btn btn-default">Cancel</a>
+      <input type="submit" class="btn primary" value="Сохранить">
+      <a href="{{ url_for("admin.index") }}" class="btn secondary">Отмена</a>
     </div>
   </form>
 {% endblock %}

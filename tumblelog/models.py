@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 from flask import url_for
 from tumblelog import db
@@ -5,7 +6,7 @@ from tumblelog import db
 
 class Post(db.DynamicDocument):
     created_at = db.DateTimeField(default=datetime.datetime.now, required=True)
-    title = db.StringField(max_length=255, required=True)
+    title = db.StringField(verbose_name=u"Заголовок", max_length=255, required=True)
     slug = db.StringField(max_length=255, required=True)
     comments = db.ListField(db.EmbeddedDocumentField('Comment'))
 
@@ -26,23 +27,23 @@ class Post(db.DynamicDocument):
     }
 
 class BlogPost(Post):
-    body = db.StringField(required=True)
+    body = db.StringField(verbose_name=u"Текст",required=True)
 
 
 class Video(Post):
-    embed_code = db.StringField(required=True)
+    embed_code = db.StringField(verbose_name=u"Код для блога",required=True)
 
 
 class Image(Post):
-    image_url = db.StringField(required=True, max_length=255)
+    image_url = db.StringField(verbose_name=u"URL картинки",required=True, max_length=255)
 
 
 class Quote(Post):
-    body = db.StringField(required=True)
-    author = db.StringField(verbose_name="Author Name", required=True, max_length=255)
+    body = db.StringField(verbose_name=u"Цитата",required=True)
+    author = db.StringField(verbose_name=u"Имя автора", required=True, max_length=255)
 
 
 class Comment(db.EmbeddedDocument):
     created_at = db.DateTimeField(default=datetime.datetime.now, required=True)
-    body = db.StringField(verbose_name="Comment", required=True)
-    author = db.StringField(verbose_name="Name", max_length=255, required=True)
+    body = db.StringField(verbose_name=u"Комментарий", required=True)
+    author = db.StringField(verbose_name=u"Имя", max_length=255, required=True)

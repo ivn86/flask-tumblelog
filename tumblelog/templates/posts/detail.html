@@ -22,22 +22,22 @@
   {% if post.image_url %}
     <p><img src="{{ post.image_url }}" /><p>
   {% endif %}
-  <p>{{ post.created_at.strftime('%H:%M %Y-%m-%d') }}</p>
+  <p>{{ post.created_at.strftime('%H:%M %d-%m-%Y') }}</p>
   <hr>
-  <h2>Comments</h2>
+  <h2>Комментарии</h2>
   {% if post.comments %}
     {% for comment in post.comments %}
        <p>{{ comment.body }}</p>
-       <p><strong>{{ comment.author }}</strong> <small>on {{ comment.created_at.strftime('%H:%M %Y-%m-%d') }}</small></p>
+       <p><strong>{{ comment.author }}</strong> <small>в {{ comment.created_at.strftime('%H:%M %d-%m-%Y') }}</small></p>
       {{ comment.text }}
     {% endfor %}
   {% endif %}
   <hr>
-  <h2>Add a comment</h2>
+  <h2>Добавить комментарий</h2>
   <form action="." method="post">
     {{ forms.render(form) }}
     <div class="actions">
-      <input type="submit" class="btn btn-primary" value="comment">
+      <input type="submit" class="btn primary" value="Комментировать">
     </div>
   </form>
   <hr>
